@@ -5,7 +5,7 @@ VERSION="$(awk '/Version/{print $NF}' apkg.rc)"
 
 echo "Building ${APP_NAME} version ${VERSION}"
 
-MODELS="MyCloudEX2Ultra"
+MODELS="MyCloudEX2Ultra WDMyCloud"
 
 for model in $MODELS; do
   make
