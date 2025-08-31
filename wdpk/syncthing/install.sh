@@ -28,7 +28,7 @@ if [ "${PLATFORM}" = "x86_64" ]; then
 else
 	PLATFORM="arm"
 fi
-VERSION="v1.20.2"
+VERSION="v1.27.1"
 
 MAINDIR="syncthing-linux-${PLATFORM}-${VERSION}"
 PACKAGE="${MAINDIR}.tar.gz"
@@ -43,4 +43,7 @@ mv ${APKG_PATH}/${MAINDIR} ${APKG_PATH}/${APKG_NAME}
 
 # create syncthing home dir
 mkdir -p ${ST_HOME}
-
+# finds first user in the admin group
+ADMIN_USER=$(cat /etc/group | grep administrators | head -n 1 | awk -F: '{ print $4}')
+chown ${ADMIN_USER} ${ST_HOME}
+chmod u+w ${ST_HOME}
